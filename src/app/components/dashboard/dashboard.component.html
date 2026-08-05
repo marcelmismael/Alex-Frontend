@@ -1,0 +1,52 @@
+<section class="encabezado-seccion">
+  <h1>Dashboard</h1>
+  <p>Resumen general de incidentes reportados en el sistema.</p>
+</section>
+
+<div *ngIf="cargando" class="mensaje-info">Cargando datos...</div>
+<div *ngIf="error" class="mensaje-error">{{ error }}</div>
+
+<ng-container *ngIf="!cargando && !error">
+  <div class="tarjetas-resumen">
+    <article class="tarjeta">
+      <span class="tarjeta-numero">{{ totalTickets }}</span>
+      <span class="tarjeta-etiqueta">Total de tickets</span>
+    </article>
+    <article class="tarjeta tarjeta-abierto">
+      <span class="tarjeta-numero">{{ abiertos }}</span>
+      <span class="tarjeta-etiqueta">Abiertos</span>
+    </article>
+    <article class="tarjeta tarjeta-progreso">
+      <span class="tarjeta-numero">{{ enProgreso }}</span>
+      <span class="tarjeta-etiqueta">En progreso</span>
+    </article>
+    <article class="tarjeta tarjeta-cerrado">
+      <span class="tarjeta-numero">{{ cerrados }}</span>
+      <span class="tarjeta-etiqueta">Cerrados</span>
+    </article>
+    <article class="tarjeta tarjeta-alerta">
+      <span class="tarjeta-numero">{{ altaPrioridad }}</span>
+      <span class="tarjeta-etiqueta">Prioridad alta</span>
+    </article>
+  </div>
+
+  <div class="acciones-rapidas">
+    <a routerLink="/registro" class="boton boton-primario">+ Nuevo incidente</a>
+    <a routerLink="/tickets" class="boton boton-secundario">Ver todos los tickets</a>
+  </div>
+
+  <section class="bloque-recientes" *ngIf="recientes.length > 0">
+    <h2>Últimos incidentes registrados</h2>
+    <ul class="lista-recientes">
+      <li *ngFor="let t of recientes">
+        <span class="punto-estado" [class]="'punto-' + t.estado.toLowerCase()"></span>
+        <span class="rec-titulo">{{ t.titulo }}</span>
+        <span class="rec-etiqueta rec-{{ t.prioridad.toLowerCase() }}">{{ t.prioridad }}</span>
+      </li>
+    </ul>
+  </section>
+
+  <div class="mensaje-info" *ngIf="totalTickets === 0">
+    Aún no hay tickets registrados. <a routerLink="/registro">Crea el primero</a>.
+  </div>
+</ng-container>

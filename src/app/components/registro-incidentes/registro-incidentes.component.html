@@ -1,0 +1,55 @@
+<section class="encabezado-seccion">
+  <h1>Registrar Incidente</h1>
+  <p>Completa el formulario para reportar una nueva incidencia técnica.</p>
+</section>
+
+<form class="tarjeta-formulario" [formGroup]="formulario" (ngSubmit)="enviar()" novalidate>
+
+  <div class="mensaje-exito" *ngIf="mensajeExito">{{ mensajeExito }}</div>
+  <div class="mensaje-error" *ngIf="errorServidor">{{ errorServidor }}</div>
+
+  <div class="campo">
+    <label for="titulo">Título</label>
+    <input id="titulo" type="text" formControlName="titulo" placeholder="Ej: No hay acceso a la red">
+    <small class="ayuda-error" *ngIf="f['titulo'].invalid && f['titulo'].touched">
+      El título es obligatorio (máximo 120 caracteres).
+    </small>
+  </div>
+
+  <div class="campo">
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" rows="4" formControlName="descripcion"
+      placeholder="Describe el problema con el mayor detalle posible"></textarea>
+    <small class="ayuda-error" *ngIf="f['descripcion'].invalid && f['descripcion'].touched">
+      La descripción es obligatoria (máximo 500 caracteres).
+    </small>
+  </div>
+
+  <div class="fila-doble">
+    <div class="campo">
+      <label for="categoria">Categoría</label>
+      <select id="categoria" formControlName="categoria">
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option *ngFor="let c of categorias" [value]="c">{{ c }}</option>
+      </select>
+      <small class="ayuda-error" *ngIf="f['categoria'].invalid && f['categoria'].touched">
+        Selecciona una categoría.
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="prioridad">Prioridad</label>
+      <select id="prioridad" formControlName="prioridad">
+        <option value="" disabled selected>Selecciona una prioridad</option>
+        <option *ngFor="let p of prioridades" [value]="p">{{ p }}</option>
+      </select>
+      <small class="ayuda-error" *ngIf="f['prioridad'].invalid && f['prioridad'].touched">
+        Selecciona una prioridad.
+      </small>
+    </div>
+  </div>
+
+  <button type="submit" class="boton boton-primario" [disabled]="enviando">
+    {{ enviando ? 'Guardando...' : 'Registrar incidente' }}
+  </button>
+</form>
