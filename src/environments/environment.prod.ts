@@ -4,5 +4,5 @@
 // Ejemplo: 'https://mayte-api.onrender.com/tickets'
 export const environment = {
   production: true,
-  apiUrl: 'https://REEMPLAZAR-CON-TU-BACKEND-DESPLEGADO.onrender.com/tickets'
+  apiUrl: 'https://desarrollosoftwaremarcelismael.onrender.com/tickets'
 };
