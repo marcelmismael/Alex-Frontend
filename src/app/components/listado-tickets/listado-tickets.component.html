@@ -1,0 +1,64 @@
+<section class="encabezado-seccion">
+  <h1>Listado de Tickets</h1>
+  <p>Consulta, actualiza el estado o elimina los incidentes registrados.</p>
+</section>
+
+<div class="barra-filtros">
+  <label for="filtro">Filtrar por estado:</label>
+  <select id="filtro" [(ngModel)]="filtroEstado">
+    <option value="">Todos</option>
+    <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
+  </select>
+  <a routerLink="/registro" class="boton boton-primario boton-pequeno">+ Nuevo incidente</a>
+</div>
+
+<div *ngIf="cargando" class="mensaje-info">Cargando tickets...</div>
+<div *ngIf="error" class="mensaje-error">{{ error }}</div>
+
+<div class="tabla-envoltorio" *ngIf="!cargando && ticketsFiltrados.length > 0">
+  <table class="tabla-tickets">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Categoría</th>
+        <th>Prioridad</th>
+        <th>Estado</th>
+        <th>Creado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of ticketsFiltrados">
+        <td class="celda-titulo">
+          <strong>{{ t.titulo }}</strong>
+          <span class="celda-descripcion">{{ t.descripcion }}</span>
+        </td>
+        <td>{{ t.categoria }}</td>
+        <td>
+          <span class="etiqueta etiqueta-{{ t.prioridad.toLowerCase() }}">{{ t.prioridad }}</span>
+        </td>
+        <td>
+          <select
+            [ngModel]="t.estado"
+            (ngModelChange)="cambiarEstado(t, $event)"
+            [disabled]="idEnProceso === t.id"
+            class="select-estado select-{{ t.estado.toLowerCase() }}">
+            <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
+          </select>
+        </td>
+        <td class="celda-fecha">{{ t.fechaCreacion | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>
+          <button class="boton boton-peligro boton-pequeno"
+                  [disabled]="idEnProceso === t.id"
+                  (click)="eliminar(t)">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="mensaje-info" *ngIf="!cargando && !error && ticketsFiltrados.length === 0">
+  No hay tickets que coincidan con el filtro seleccionado.
+</div>

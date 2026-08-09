@@ -1,0 +1,22 @@
+<nav class="barra-navegacion">
+  <div class="marca">
+    <span class="marca-icono">🎫</span>
+    <span>Alex_api <small>· MISY S.A.</small></span>
+  </div>
+
+  <button class="boton-hamburguesa" (click)="alternarMenu()" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="enlaces" [class.abierto]="menuAbierto">
+    <li>
+      <a routerLink="/dashboard" routerLinkActive="activo" (click)="cerrarMenu()">Dashboard</a>
+    </li>
+    <li>
+      <a routerLink="/registro" routerLinkActive="activo" (click)="cerrarMenu()">Registrar Incidente</a>
+    </li>
+    <li>
+      <a routerLink="/tickets" routerLinkActive="activo" (click)="cerrarMenu()">Listado de Tickets</a>
+    </li>
+  </ul>
+</nav>

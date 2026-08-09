@@ -1,0 +1,64 @@
+.barra-filtros {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.barra-filtros select {
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.barra-filtros a { margin-left: auto; }
+
+.tabla-envoltorio {
+  overflow-x: auto;
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  background: var(--color-superficie);
+}
+
+.tabla-tickets { width: 100%; border-collapse: collapse; min-width: 720px; }
+
+.tabla-tickets th {
+  text-align: left;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-texto-suave);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla-tickets td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-borde);
+  vertical-align: top;
+  font-size: 0.92rem;
+}
+
+.tabla-tickets tr:last-child td { border-bottom: none; }
+
+.celda-titulo { display: flex; flex-direction: column; gap: 3px; max-width: 260px; }
+.celda-descripcion { color: var(--color-texto-suave); font-size: 0.82rem; }
+.celda-fecha { white-space: nowrap; color: var(--color-texto-suave); font-size: 0.85rem; }
+
+.etiqueta { font-size: 0.75rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+.etiqueta-alta { background: #fde2e2; color: #b42318; }
+.etiqueta-media { background: #fef3c7; color: #92400e; }
+.etiqueta-baja { background: #dcfce7; color: #166534; }
+
+.select-estado {
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid var(--color-borde);
+}
+
+.select-abierto { color: var(--color-estado-abierto); }
+.select-en_progreso { color: var(--color-estado-progreso); }
+.select-cerrado { color: var(--color-estado-cerrado); }
