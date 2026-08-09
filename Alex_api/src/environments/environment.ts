@@ -2,5 +2,5 @@
 // Apunta al backend Spring Boot en Render.
 export const environment = {
   production: false,
-  apiUrl: 'https://mayte-api.onrender.com/tickets'
+  apiUrl: 'http://localhost:8081/tickets'
 };
