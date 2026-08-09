@@ -1,0 +1,10 @@
+/node_modules
+/dist
+/out-tsc
+/.angular/cache
+npm-debug.log
+yarn-error.log
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
